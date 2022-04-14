@@ -7,6 +7,10 @@
         {
             "Name": "famous_fox_federation",
             "Amount": 1
+        },
+        {
+            "Name": "enviro",
+            "Amount": 3
         }
     ]
 }
