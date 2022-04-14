@@ -19,34 +19,43 @@ totalBalance = 0
 active = True
 
 while(active):
-    menu_choice = input("1. Dodaj NFT do portfolio\n2. Usuń NFT z portfolio\n3. Wyświetl aktualne portfolio\n4. Oblicz wartość portfolio\n5. Wprowadź adres Solana \n6. Wyjdź \n")
+    menu_choice = input("1. Dodaj NFT do portfolio\n2. Usuń NFT z portfolio\n3. Wyświetl aktualne portfolio\n4. Oblicz wartość portfolio\n5. Wprowadź adres Solana \n6. Wyjdź \n\n")
     match(menu_choice):
         case '1':
-            f = open('collection.json', 'r+')
+            f = open('collections.json', 'r+')
             data = json.load(f)
 
-            addName = input("Wprowadź nazwę kolekcji (np. famous_fox_federation): ")
-            addAmount = int(input("Wprowadź ilość sztuk z kolekcji: "))
-
-            new_data = {"Name":addName,
-                        "Amount":addAmount
+            try:
+                addName = input("Wprowadź nazwę kolekcji (np. famous_fox_federation): ")
+                addAmount = int(input("Wprowadź ilość sztuk z kolekcji: \n"))
+                new_data = {"Name":addName,
+                            "Amount":addAmount
                         }
 
-            data["Collections"].append(new_data)
-            # Sets file's current position at offset.
-            f.seek(0)
-            # convert back to json.
-            json.dump(data, f, indent = 4)
-            f.close()
-            
-        
+                data["Collections"].append(new_data)
+                # Sets file's current position at offset.
+                f.seek(0)
+                # convert back to json.
+                json.dump(data, f, indent = 4)
+                f.close()
+            except Exception:
+                print('\033[1m'+"\nWprowadzono złą wartość dla liczby sztuk!\n" + '\033[0m')
+
         case '2':
-            f = open('collection.json', 'r')
+            collection_list = []
+            f = open('collections.json', 'r')
             data = json.load(f)
-            print(data)
+            print("\nDostępne kolekcje: ")
+            for i in data['Collections']:
+                print(i['Name'])
+                collection_list.append(i['Name'])
             f.close()
-        
+
             delete = input("Którą kolekcję chcesz usunąć?: ")
+            if delete in collection_list:
+                print("Pomyślnie usunięto {}\n".format(delete))
+            else:
+                print('\033[1m'+ "Nie ma takiej kolekcji!\n" + '\033[0m')
             delete_data = {"Name": delete}
 
             j = 0
@@ -55,14 +64,13 @@ while(active):
                     del data['Collections'][j]
                 j += 1
             
-            f = open('collection.json', 'w')
+            f = open('collections.json', 'w')
             json.dump(data, f, indent = 4)
-            print(data)
             f.close()
             
 
         case '3':
-            f = open('collection.json', 'r')
+            f = open('collections.json', 'r')
             data = json.load(f)
             for i in data['Collections']:
                 url = "http://api-mainnet.magiceden.dev/v2/collections/" + i['Name'] + "/stats"
@@ -73,9 +81,9 @@ while(active):
                 response = requests.request("GET", url, headers=headers, data=payload).json()
 
                 print("Symbol: " + response['symbol'])
-                print("   Amount: " + str(i['Amount']))
+                print("   Ilość: " + str(i['Amount']))
                 f.close()
-
+            print('\n')
 
         case '4':
             totalBalance = 0
@@ -100,17 +108,22 @@ while(active):
                     break
                 totalBalance += float(response['floorPrice']/LAMPORTS) * i['Amount']
             
-            f2 = open('wallet.txt', 'r')
-            publicKey = f2.read()
-            solana_client = Client("https://api.mainnet-beta.solana.com")
-            results = solana_client.get_balance(PublicKey(publicKey))
-
-            solanaBalance = results['result']['value']/LAMPORTS
+            try:
+                f2 = open('wallet.txt', 'r')
+                publicKey = f2.read()
+                solana_client = Client("https://api.mainnet-beta.solana.com")
+                results = solana_client.get_balance(PublicKey(publicKey))
+                solanaBalance = results['result']['value']/LAMPORTS
+            except Exception:
+                print('\033[1m'+ "Wprowadzono zły adres Solana!\n" + '\033[0m')
+                solanaBalance = 0
+            
             totalBalance = totalBalance * 0.91 #assuming that fee is 9%
+            nftBalance = totalBalance
             totalBalance += solanaBalance
 
-            print("Your NFT total floor value: " + str(totalBalance))
-            print("\nYour Solana wallet balance: " + str(solanaBalance))
+            print("\nYour NFT total floor value: " + str(nftBalance))
+            print("Your Solana wallet balance: " + str(solanaBalance))
             print("Total balance: " + str(totalBalance))
             print("")
             f.close()
