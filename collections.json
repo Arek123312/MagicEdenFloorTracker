@@ -11,14 +11,6 @@
         {
             "Name": "enviro",
             "Amount": 3
-        },
-        {
-            "Name": "testowe",
-            "Amount": 10
-        },
-        {
-            "Name": "testowe dodanie",
-            "Amount": 2
         }
     ]
 }
