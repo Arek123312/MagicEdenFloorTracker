@@ -1,17 +1,30 @@
 import requests
+from solana.rpc.api import Client
+from solana.publickey import PublicKey
 
 LAMPORTS = 1000000000 # number of lamports in 1 solana
+totalBalance = 0
+collections = ["astrals", "famous_fox_federation", "tombstoned", "tombstoned", "yaku_corp_capsulex", "yaku_corp_capsulex",
+"yaku_corp", "yaku_corp"]
 
-collection = str(input('Wprowadź nazwę kolekcji: '))
+for i in range(0,len(collections)):
+    url = "http://api-mainnet.magiceden.dev/v2/collections/" + collections[i] + "/stats"
 
-url = "http://api-mainnet.magiceden.dev/v2/collections/" + collection + "/stats"
+    payload={}
+    headers = {}
 
-payload={}
-headers = {}
+    response = requests.request("GET", url, headers=headers, data=payload).json()
 
-response = requests.request("GET", url, headers=headers, data=payload).json()
+    print("Symbol: " + response['symbol'])
+    print("Floor: ", end='') 
+    print(response['floorPrice']/LAMPORTS)
 
-print("Floor: ", end='') 
-print(response['floorPrice']/LAMPORTS)
+    totalBalance += float(response['floorPrice']/LAMPORTS)
+
+solana_client = Client("https://api.mainnet-beta.solana.com")
+results = solana_client.get_balance(PublicKey('ALcLZyR74AZVc6p1SJnoEyLHeViKtdtRj5xHKvsaRYzF'))
+
+print("Your Solana wallet balance: " + str(results['result']['value']/LAMPORTS))
+print("Total balance: " + str(totalBalance))
 
 
