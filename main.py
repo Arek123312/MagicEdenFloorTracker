@@ -7,6 +7,7 @@ file_path = "D:\MagicEdenFloorTracker\collections.json"
 
 LAMPORTS = 1000000000 # number of lamports in 1 solana
 totalBalance = 0
+publicKey = 'ALcLZyR74AZVc6p1SJnoEyLHeViKtdtRj5xHKvsaRYzF'
 
 #collections = ["astrals", "famous_fox_federation", "tombstoned", "tombstoned", "yaku_corp_capsulex", "yaku_corp_capsulex",
 #"yaku_corp", "yaku_corp"]
@@ -14,30 +15,50 @@ totalBalance = 0
 f = open(file_path, 'r')
 data = json.load(f)
 
+menu_choice = input("1. Dodaj NFT do portfolio\n2. Usuń NFT z portfolio\n3. Wyświetl aktualne portfolio\n4. Oblicz wartość portfolio\n")
 
-for i in data['Collections']:
-    url = "http://api-mainnet.magiceden.dev/v2/collections/" + i['Name'] + "/stats"
+match(menu_choice):
+    case '1':
+        
+    case '3':
+        for i in data['Collections']:
+            url = "http://api-mainnet.magiceden.dev/v2/collections/" + i['Name'] + "/stats"
 
-    payload={}
-    headers = {}
+            payload={}
+            headers = {}
 
-    response = requests.request("GET", url, headers=headers, data=payload).json()
+            response = requests.request("GET", url, headers=headers, data=payload).json()
 
-    print("Symbol: " + response['symbol'])
-    print("Floor: ", end='') 
-    print(response['floorPrice']/LAMPORTS, end='')
-    print("   Amount: " + str(i['Amount']))
+            print("Symbol: " + response['symbol'])
+            print("   Amount: " + str(i['Amount']))
 
-    totalBalance += float(response['floorPrice']/LAMPORTS) * i['Amount']
 
-solana_client = Client("https://api.mainnet-beta.solana.com")
-results = solana_client.get_balance(PublicKey('ALcLZyR74AZVc6p1SJnoEyLHeViKtdtRj5xHKvsaRYzF'))
+    case '4':
+        for i in data['Collections']:
+            url = "http://api-mainnet.magiceden.dev/v2/collections/" + i['Name'] + "/stats"
 
-solanaBalance = results['result']['value']/LAMPORTS
-totalBalance = totalBalance * 0.91 #assuming that fee is 9%
-totalBalance += solanaBalance
+            payload={}
+            headers = {}
 
-print("\nYour Solana wallet balance: " + str(solanaBalance))
-print("Total balance: " + str(totalBalance))
+            response = requests.request("GET", url, headers=headers, data=payload).json()
+
+            print("Symbol: " + response['symbol'])
+            print("Floor: ", end='') 
+            print(response['floorPrice']/LAMPORTS, end='')
+            print("   Amount: " + str(i['Amount']))
+
+            totalBalance += float(response['floorPrice']/LAMPORTS) * i['Amount']
+        solana_client = Client("https://api.mainnet-beta.solana.com")
+        results = solana_client.get_balance(PublicKey(publicKey))
+
+        solanaBalance = results['result']['value']/LAMPORTS
+        totalBalance = totalBalance * 0.91 #assuming that fee is 9%
+        totalBalance += solanaBalance
+
+        print("\nYour Solana wallet balance: " + str(solanaBalance))
+        print("Total balance: " + str(totalBalance))
+        
+
+
 
 
