@@ -24,7 +24,11 @@ for i in range(0,len(collections)):
 solana_client = Client("https://api.mainnet-beta.solana.com")
 results = solana_client.get_balance(PublicKey('ALcLZyR74AZVc6p1SJnoEyLHeViKtdtRj5xHKvsaRYzF'))
 
-print("Your Solana wallet balance: " + str(results['result']['value']/LAMPORTS))
+solanaBalance = results['result']['value']/LAMPORTS
+totalBalance = totalBalance * 0.91 #assuming that fee is 9%
+totalBalance += solanaBalance
+
+print("Your Solana wallet balance: " + str(solanaBalance))
 print("Total balance: " + str(totalBalance))
 
 
