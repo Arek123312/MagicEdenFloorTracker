@@ -1,3 +1,4 @@
+from msilib.schema import Error
 import requests
 from solana.rpc.api import Client
 from solana.publickey import PublicKey
@@ -55,13 +56,16 @@ match(menu_choice):
             payload={}
             headers = {}
 
-            response = requests.request("GET", url, headers=headers, data=payload).json()
+            try:
+                response = requests.request("GET", url, headers=headers, data=payload).json()
 
-            print("Symbol: " + response['symbol'])
-            print("Floor: ", end='') 
-            print(response['floorPrice']/LAMPORTS, end='')
-            print("   Amount: " + str(i['Amount']))
-
+                print("Symbol: " + response['symbol'])
+                print("Floor: ", end='') 
+                print(response['floorPrice']/LAMPORTS, end='')
+                print("   Amount: " + str(i['Amount']))
+            except Exception:
+                print("Nie wykryto kolekcji. Sprawdź poprawność danych!")
+                break
             totalBalance += float(response['floorPrice']/LAMPORTS) * i['Amount']
         solana_client = Client("https://api.mainnet-beta.solana.com")
         results = solana_client.get_balance(PublicKey(publicKey))

@@ -11,6 +11,10 @@
         {
             "Name": "enviro",
             "Amount": 3
+        },
+        {
+            "Name": "testowe",
+            "Amount": 10
         }
     ]
 }
