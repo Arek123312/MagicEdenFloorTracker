@@ -15,6 +15,10 @@
         {
             "Name": "testowe",
             "Amount": 10
+        },
+        {
+            "Name": "testowe dodanie",
+            "Amount": 2
         }
     ]
 }

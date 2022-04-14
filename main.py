@@ -1,4 +1,5 @@
 from msilib.schema import Error
+from typing import Collection
 import requests
 from solana.rpc.api import Client
 from solana.publickey import PublicKey
@@ -21,7 +22,7 @@ menu_choice = input("1. Dodaj NFT do portfolio\n2. Usuń NFT z portfolio\n3. Wy�
 
 match(menu_choice):
     case '1':
-        listObj = []
+        #listObj = []
 
         addName = input("Wprowadź nazwę kolekcji (np. famous_fox_federation): ")
         addAmount = int(input("Wprowadź ilość sztuk z kolekcji: "))
@@ -35,7 +36,20 @@ match(menu_choice):
         f.seek(0)
         # convert back to json.
         json.dump(data, f, indent = 4)
-        
+    
+    case '2':
+        print(data)
+    
+        delete = input("Którą kolekcję chcesz usunąć?: ")
+        delete_data = {"Name": delete}
+
+        j = 0
+        for i in data['Collections']:
+            if i['Name'] == delete:
+                del data['Collections'][j]
+            j += 1
+        print(data)
+
     case '3':
         for i in data['Collections']:
             url = "http://api-mainnet.magiceden.dev/v2/collections/" + i['Name'] + "/stats"
