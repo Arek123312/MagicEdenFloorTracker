@@ -6,6 +6,7 @@ import requests
 from solana.rpc.api import Client
 from solana.publickey import PublicKey
 import json
+import cffi
 from os import path
 
 from functions import function1, function2, function3, function4, function5
