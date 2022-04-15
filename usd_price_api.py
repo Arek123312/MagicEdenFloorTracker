@@ -1,14 +1,11 @@
 import requests
 
-#def getSolPrice():
+def getUsdPrice():
     url = "http://api.nbp.pl/api/exchangerates/rates/a/usd/"
 
     payload={}
     headers = {}
 
     response = requests.request("GET", url, headers=headers, data=payload).json()
-    usd_price = response['rates'][0]['mid']
-    print(usd_price)
-
-    #solana_price = response['price'][:-6]
-   #return solana_price
+    usd_price = round(response['rates'][0]['mid'], 2)
+    return usd_price

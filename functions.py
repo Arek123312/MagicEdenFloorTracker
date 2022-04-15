@@ -8,6 +8,7 @@ from solana.publickey import PublicKey
 from os import path
 
 from binance_api import getSolPrice
+from usd_price_api import getUsdPrice
 
 LAMPORTS = 1000000000 # number of lamports in 1 solana
 
@@ -113,11 +114,15 @@ def function4():
             totalBalance += solanaBalance
 
             sol_price = float(getSolPrice())
+            usd_price = float(getUsdPrice())
             
             print("\nSolana price: $" + str(round(sol_price, 2)))
             print("Your NFT total floor value: " + str(round(nftBalance, 2)) + ' = $' + str(round(sol_price * nftBalance, 2)))
             print("Your Solana wallet balance: " + str(round(solanaBalance, 2)) + ' = $' + str(round(sol_price * solanaBalance, 2)))
-            print("Total balance: " + str(round(totalBalance, 2)) + ' = $' + str(round(sol_price * totalBalance, 2)))
+            usd_value = round(sol_price * totalBalance, 2)
+            pln_value = round(usd_value * usd_price, 2)
+            print("PLN/USD: " + str(usd_price))
+            print("Total balance: " + str(round(totalBalance, 2)) + ' = $' + str(usd_value) + ' = PLN ' + str(pln_value))
             print("")
             f.close()
 

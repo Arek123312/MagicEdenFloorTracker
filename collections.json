@@ -1,12 +1,8 @@
 {
     "Collections": [
         {
-            "Name": "enviro",
-            "Amount": 2
-        },
-        {
-            "Name": "tombstoned",
-            "Amount": 2
+            "Name": "sgf_united",
+            "Amount": 5
         }
     ]
 }
