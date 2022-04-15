@@ -9,8 +9,60 @@
             "Amount": 1
         },
         {
-            "Name": "enviro",
+            "Name": "astrals",
+            "Amount": 1
+        },
+        {
+            "Name": "yaku_corp",
+            "Amount": 2
+        },
+        {
+            "Name": "yaku_corp_capsulex",
+            "Amount": 2
+        },
+        {
+            "Name": "sgf_united",
+            "Amount": 5
+        },
+        {
+            "Name": "solagon",
+            "Amount": 1
+        },
+        {
+            "Name": "solape_access_card",
+            "Amount": 1
+        },
+        {
+            "Name": "toon_wabbits",
+            "Amount": 1
+        },
+        {
+            "Name": "abstractart",
             "Amount": 3
+        },
+        {
+            "Name": "zaniprofilepicture",
+            "Amount": 1
+        },
+        {
+            "Name": "zoolana_alpha_blue",
+            "Amount": 2
+        },
+        {
+            "Name": "artifakts",
+            "Amount": 2
+        },
+        {
+            "Name": "hydrascripts",
+            "Amount": 1
+        },
+        {
+            "Name": "degods",
+            "Amount": 1
+        },
+        {
+            "Name": "test3",
+            "Amount": 2
         }
     ]
 }
