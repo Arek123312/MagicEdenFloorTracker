@@ -7,6 +7,8 @@ from solana.rpc.api import Client
 from solana.publickey import PublicKey
 from os import path
 
+from binance_api import getSolPrice
+
 LAMPORTS = 1000000000 # number of lamports in 1 solana
 
 def function1():
@@ -110,9 +112,12 @@ def function4():
             nftBalance = totalBalance
             totalBalance += solanaBalance
 
-            print("\nYour NFT total floor value: " + str(nftBalance))
-            print("Your Solana wallet balance: " + str(solanaBalance))
-            print("Total balance: " + str(totalBalance))
+            sol_price = float(getSolPrice())
+            
+            print("\nSolana price: $" + str(round(sol_price, 2)))
+            print("Your NFT total floor value: " + str(round(nftBalance, 2)) + ' = $' + str(round(sol_price * nftBalance, 2)))
+            print("Your Solana wallet balance: " + str(round(solanaBalance, 2)) + ' = $' + str(round(sol_price * solanaBalance, 2)))
+            print("Total balance: " + str(round(totalBalance, 2)) + ' = $' + str(round(sol_price * totalBalance, 2)))
             print("")
             f.close()
 
