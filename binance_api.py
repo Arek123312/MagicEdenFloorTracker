@@ -1,6 +1,6 @@
 import requests
 
-def getSolPrice(solana_price):
+def getSolPrice():
     url = "https://api.binance.com/api/v3/ticker/price?symbol=SOLUSDT"
 
     payload={}
@@ -8,3 +8,4 @@ def getSolPrice(solana_price):
 
     response = requests.request("GET", url, headers=headers, data=payload).json()
     solana_price = response['price'][:-6]
+    return solana_price
