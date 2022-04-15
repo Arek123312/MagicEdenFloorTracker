@@ -1,8 +1,12 @@
 {
     "Collections": [
         {
-            "Name": "Domyslna kolekcja - usun!",
-            "Amount": 0
+            "Name": "enviro",
+            "Amount": 2
+        },
+        {
+            "Name": "tombstoned",
+            "Amount": 2
         }
     ]
 }
