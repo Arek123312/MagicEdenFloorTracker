@@ -11,7 +11,7 @@ from os import path
 
 from functions import function1, function2, function3, function4, function5
 
-
+#test commit
 
 LAMPORTS = 1000000000 # number of lamports in 1 solana
 totalBalance = 0
