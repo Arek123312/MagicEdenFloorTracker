@@ -9,8 +9,7 @@ import json
 import cffi
 from os import path
 
-from functions import function1, function2, function3, function4, function5
-
+from functions import function1, function2, function3, function4, function5, function6
 
 
 LAMPORTS = 1000000000 # number of lamports in 1 solana
@@ -55,6 +54,9 @@ while(active):
 
         case '6':
             active = False
+        
+        #case '7':
+            
                 
 
             

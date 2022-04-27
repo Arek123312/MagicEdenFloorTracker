@@ -6,6 +6,7 @@ import requests
 from solana.rpc.api import Client
 from solana.publickey import PublicKey
 from os import path
+from datetime import datetime
 
 from binance_api import getSolPrice
 from usd_price_api import getUsdPrice
@@ -124,6 +125,8 @@ def function4():
             print("PLN/USD: " + str(usd_price))
             print("Total balance: " + str(round(totalBalance, 2)) + ' = $' + str(usd_value) + ' = PLN ' + str(pln_value))
             print("")
+            history_data = "Total balance: " + str(round(totalBalance, 2)) + ' = $' + str(usd_value) + ' = PLN ' + str(pln_value)
+            function6(history_data)
             f.close()
 
 def function5():
@@ -132,3 +135,27 @@ def function5():
             f = open('wallet.txt', 'w')
             f.write(publicKey)
             f.close()
+
+
+def function6(balance):
+            f = open('history.json', 'r+')
+            data = json.load(f)
+
+            try:
+                now = datetime.now()
+                now = now.strftime("%d/%m/%Y %H:%M:%S")
+                total_balance = balance
+                new_data = {"Date":now,
+                            "Balance":total_balance
+                        }
+
+                data["History"].append(new_data)
+                # Sets file's current position at offset.
+                f.seek(0)
+                # convert back to json.
+                json.dump(data, f, indent = 4)
+                f.close()
+            except Exception:
+                print('\033[1m'+"\nWprowadzono złą wartość!\n" + '\033[0m')
+
+
