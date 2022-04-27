@@ -9,7 +9,7 @@ import json
 import cffi
 from os import path
 
-from functions import function1, function2, function3, function4, function5, function6
+from functions import function1, function2, function3, function4, function5, function7
 
 
 LAMPORTS = 1000000000 # number of lamports in 1 solana
@@ -35,7 +35,7 @@ except Exception:
 
 
 while(active):
-    menu_choice = input("1. Dodaj NFT do portfolio\n2. Usuń NFT z portfolio\n3. Wyświetl aktualne portfolio\n4. Oblicz wartość portfolio\n5. Wprowadź adres Solana \n6. Wyjdź \n\n")
+    menu_choice = input("1. Dodaj NFT do portfolio\n2. Usuń NFT z portfolio\n3. Wyświetl aktualne portfolio\n4. Oblicz wartość portfolio\n5. Wprowadź adres Solana \n6. Wyświetl historię\n7. Wyjdź \n\n")
     match(menu_choice):
         case '1':
             function1()
@@ -53,10 +53,11 @@ while(active):
             function5()
 
         case '6':
+            function7()   
+        case '7':
             active = False
         
-        #case '7':
-            
+        
                 
 
             

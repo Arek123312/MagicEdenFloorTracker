@@ -7,6 +7,7 @@ from solana.rpc.api import Client
 from solana.publickey import PublicKey
 from os import path
 from datetime import datetime
+from tabulate import tabulate
 
 from binance_api import getSolPrice
 from usd_price_api import getUsdPrice
@@ -158,4 +159,11 @@ def function6(balance):
             except Exception:
                 print('\033[1m'+"\nWprowadzono złą wartość!\n" + '\033[0m')
 
+def function7():
+            f = open('history.json', 'r+')
+            data = json.load(f)
 
+            for i in data['History']:
+                print(i['Date'] + i['Balance'])
+
+            print('\n')

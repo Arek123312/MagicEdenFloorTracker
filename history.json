@@ -1,10 +1,6 @@
 {
     "History": [
         {
-            "Date": "sgf_united",
-            "Balance": 5
-        },
-        {
             "Date": "27/04/2022 14:13:52",
             "Balance": "Total balance: 109.34 = $10852.33 = PLN 48292.87"
         },
@@ -27,6 +23,10 @@
         {
             "Date": "27/04/2022 14:20:43",
             "Balance": "Total balance: 109.33 = $10815.54 = PLN 48129.15"
+        },
+        {
+            "Date": "27/04/2022 14:55:59",
+            "Balance": "Total balance: 108.16 = $10658.48 = PLN 47430.24"
         }
     ]
 }
