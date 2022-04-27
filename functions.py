@@ -127,8 +127,13 @@ def function4():
             print("Total balance: " + str(round(totalBalance, 2)) + ' = $' + str(usd_value) + ' = PLN ' + str(pln_value))
             print("")
             history_data = "Total balance: " + str(round(totalBalance, 2)) + ' = $' + str(usd_value) + ' = PLN ' + str(pln_value)
-            function6(history_data)
-            f.close()
+            
+            try:
+                function6(history_data)
+                f.close()
+            except Exception:
+                print('Błąd!')
+
 
 def function5():
             publicKey = input('Wprowadź adres portfela: \n')
@@ -165,7 +170,7 @@ def function7():
                 data = json.load(f)
 
                 for i in data['History']:
-                    print(i['Date'] + i['Balance'])
+                    print(i['Date'] + '  ' + i['Balance'])
 
                 print('\n')
             except Exception:

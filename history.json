@@ -1,9 +1,16 @@
 {
     "History": [
-        {},
         {
             "Date": "27/04/2022 15:11:53",
             "Balance": "Total balance: 6.81 = $668.16 = PLN 2973.31"
+        },
+        {
+            "Date": "27/04/2022 15:16:55",
+            "Balance": "Total balance: 6.81 = $669.32 = PLN 2978.47"
+        },
+        {
+            "Date": "27/04/2022 15:18:05",
+            "Balance": "Total balance: 107.65 = $10590.78 = PLN 47128.97"
         }
     ]
 }
