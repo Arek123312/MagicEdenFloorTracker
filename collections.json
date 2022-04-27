@@ -1,0 +1,64 @@
+{
+    "Collections": [
+        {
+            "Name": "sgf_united",
+            "Amount": 5
+        },
+        {
+            "Name": "abstractart",
+            "Amount": 3
+        },
+        {
+            "Name": "astrals",
+            "Amount": 1
+        },
+        {
+            "Name": "metakatz",
+            "Amount": 3
+        },
+        {
+            "Name": "solagon",
+            "Amount": 1
+        },
+        {
+            "Name": "solape_access_card",
+            "Amount": 1
+        },
+        {
+            "Name": "toon_wabbits",
+            "Amount": 1
+        },
+        {
+            "Name": "zaniprofilepicture",
+            "Amount": 1
+        },
+        {
+            "Name": "zoolana_alpha_blue",
+            "Amount": 2
+        },
+        {
+            "Name": "tombstoned",
+            "Amount": 2
+        },
+        {
+            "Name": "famous_fox_federation",
+            "Amount": 1
+        },
+        {
+            "Name": "artifakts",
+            "Amount": 2
+        },
+        {
+            "Name": "yaku_corp",
+            "Amount": 2
+        },
+        {
+            "Name": "yaku_corp_capsulex",
+            "Amount": 2
+        },
+        {
+            "Name": "degendojonft",
+            "Amount": 1
+        }
+    ]
+}
