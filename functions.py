@@ -160,10 +160,13 @@ def function6(balance):
                 print('\033[1m'+"\nWprowadzono złą wartość!\n" + '\033[0m')
 
 def function7():
-            f = open('history.json', 'r+')
-            data = json.load(f)
+            try:
+                f = open('history.json', 'r+')
+                data = json.load(f)
 
-            for i in data['History']:
-                print(i['Date'] + i['Balance'])
+                for i in data['History']:
+                    print(i['Date'] + i['Balance'])
 
-            print('\n')
+                print('\n')
+            except Exception:
+                print('Nie ma historii lub plik jest uszkodzony!\n')

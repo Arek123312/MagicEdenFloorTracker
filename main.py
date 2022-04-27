@@ -35,7 +35,7 @@ except Exception:
 
 
 while(active):
-    menu_choice = input("1. Dodaj NFT do portfolio\n2. Usuń NFT z portfolio\n3. Wyświetl aktualne portfolio\n4. Oblicz wartość portfolio\n5. Wprowadź adres Solana \n6. Wyświetl historię\n7. Wyjdź \n\n")
+    menu_choice = input("1. Dodaj NFT do portfolio\n2. Usuń NFT z portfolio\n3. Wyświetl aktualne portfolio\n4. Oblicz wartość portfolio\n5. Wprowadź adres Solana \n6. Wyświetl historię\n47. Wyjdź \n\n")
     match(menu_choice):
         case '1':
             function1()
